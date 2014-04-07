@@ -1,17 +1,26 @@
-HEADERS = matrix.hpp rain.hpp
+### Setting
+TARGET = matrix
+LIBS = -lncurses
 
-default: matrix
+CXX = g++
+CPPFLAGS = -g -Wall -std=c++11
 
-matrix: main.o matrix.o rain.o
-	g++ -o matrix main.o matrix.o rain.o -lncurses
+OBJECTS = $(patsubst %.cpp, %.o, $(wildcard *.cpp))
+HEADERS = $(wildcard *.hpp)
 
-main.o: main.cpp $(HEADERS)
-	g++ -std=c++11 -o main.o -c main.cpp
-matrix.o: matrix.cpp $(HEADERS)
-	g++ -std=c++11 -o matrix.o -c matrix.cpp
-rain.o: rain.cpp $(HEADERS)
-	g++ -std=c++11	-o rain.o -c rain.cpp
+### Script
+default: $(TARGET)
+all: default
+
+$(TARGET): $(OBJECTS)
+	$(CXX) $(OBJECTS) -Wall $(LIBS) -o $@
+
+%.o: %.cpp $(HEADERS)
+	$(CXX) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	-rm -f main.o matrix.o rain.o
-	-rm -f matrix
+	-rm -f *.o
+	-rm -f $(TARGET)
+
+.PHONY: default all clean
+.PRECIOUS: $(TARGET) $(OBJECTS)

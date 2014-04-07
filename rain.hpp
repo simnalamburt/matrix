@@ -1,7 +1,8 @@
 #pragma once
 struct rain
 {
-  int x, y;
+  int y;
+  int x;
   int trailLength;
   int invVelocity;
   int tick;
