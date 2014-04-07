@@ -6,6 +6,8 @@
 #include "matrix.hpp"
 
 using namespace std;
+using random_real = uniform_real_distribution<>;
+using random_int  = uniform_int_distribution<>;
 
 
 
@@ -23,7 +25,6 @@ matrix::matrix()
   noecho();
   raw();
   nodelay(w, true);
-  srand((unsigned)time(nullptr));
   width = COLS;
   height = LINES;
   idx = 0;
@@ -58,11 +59,11 @@ void matrix::refresh()
   remove_if(rainList.begin(), rainList.end(),
       [&](const auto& rain) { return rain.y - rain.trailLength >= height; });
 
-  if (get_random() < matrix::newRainProb)
+  if (random_real{0, 1}(engine) < matrix::newRainProb)
   {
     rainList.emplace_back(rand() % width, 0,
-        get_random_range(range(minTrail, maxTrail)),
-        get_random_range(range(3, 6)) );
+        random_int{minTrail, maxTrail}(engine),
+        random_int{3, 6}(engine) );
   }
   ++idx;
   idx %= 10;
@@ -78,33 +79,22 @@ void matrix::draw()
       int trailLength = rain.trailLength;
 
       setColor(1);
-      mvaddch(y, x, get_random_char());
+      auto c = map[random_int{0, mapLen-1}(engine)];
+      mvaddch(y, x, c);
       setColor(2);
       for (int i = 1; i < trailLength; ++i)
-        mvaddch(y - i, x, get_random_char());
+      {
+        auto c = map[random_int{0, mapLen-1}(engine)];
+        mvaddch(y - i, x, c);
+      }
       mvaddch(y - trailLength, x, blank_char);
     }
   }
   mvaddch(0, 0, idx + '0');
 }
 
-char matrix::get_random_char()
-{
-  return matrix::map[rand() % matrix::mapLen];
-}
-
 void matrix::setColor(int color)
 {
   if(color >= 0 && color < COLORS)
     wattron(w, COLOR_PAIR(color));
-}
-
-int matrix::get_random_range(range r)
-{
-  return rand() % (r.end - r.start) + r.start;
-}
-
-double matrix::get_random()
-{
-  return static_cast<double>(rand()) / RAND_MAX;
 }

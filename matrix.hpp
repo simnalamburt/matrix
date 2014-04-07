@@ -1,15 +1,10 @@
 #pragma once
+#include <random>
 #include <vector>
 #include <ncurses.h>
 #include "rain.hpp"
 
 
-
-struct range
-{
-  int start, end;
-  range(int start, int end) : start(start), end(end) { }
-};
 
 class matrix
 {
@@ -28,6 +23,7 @@ private:
   int height;
   int idx;
   std::vector<rain> rainList;
+  std::default_random_engine engine;
 
 public:
   matrix();
@@ -38,7 +34,4 @@ private:
   void refresh();
   void draw();
   void setColor(int color);
-  char get_random_char();
-  int get_random_range(range r);
-  double get_random();
 };
