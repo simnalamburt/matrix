@@ -1,9 +1,9 @@
-#include <ncurses.h>
 #include <vector>
-#include "rain.h"
+#include <ncurses.h>
+#include "rain.hpp"
 
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef MATRIX_HPP
+#define MATRIX_HPP
 struct range
 {
 	int start;

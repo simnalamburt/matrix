@@ -1,5 +1,5 @@
-#ifndef RAIN_H
-#define RAIN_H
+#ifndef RAIN_HPP
+#define RAIN_HPP
 struct rain
 {
 	int y;

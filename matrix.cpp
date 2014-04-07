@@ -1,8 +1,8 @@
-#include "matrix.h"
 #include <cstring>
 #include <cstdlib>
 #include <ctime>
 #include <unistd.h>
+#include "matrix.hpp"
 
 const char * matrix::map = "`1234567890-=~!@#$%^&*()_+qwertyuiop[]asdfghjkl;'zxcvbnm,./\\QWERTYUIOP{}|ASDFGHJKL:\":ZXCVBNM<>?";
 const int matrix::mapLen = strlen(matrix::map);

@@ -1,4 +1,4 @@
-HEADERS = matrix.h rain.h
+HEADERS = matrix.hpp rain.hpp
 
 default: matrix
 
