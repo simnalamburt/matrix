@@ -58,8 +58,7 @@ void matrix::refresh()
   if (get_random() < matrix::newRainProb)
   {
     rainList.push_back(
-        rain(0, 
-          rand() % width, 
+        rain(rand() % width, 0,
           get_random_range(range(minTrail, maxTrail)),
           get_random_range(range(3, 6))));
   }
