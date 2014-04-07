@@ -1,21 +1,13 @@
 #pragma once
 struct rain
 {
-  int y;
-  int x;
+  int x, y;
   int trailLength;
   int invVelocity;
   int tick;
 
-  public:
-  rain(int y, int x, int trailLength, int invVelocity)
-  {
-    this->y = y;
-    this->x = x;
-    this->trailLength = trailLength;
-    this->invVelocity = invVelocity;
-    this->tick = 0;
-  }
+  rain(int y, int x, int trailLength, int invVelocity) :
+    y(y), x(x), trailLength(trailLength), invVelocity(invVelocity), tick(0) { }
 
   void refresh();
   bool isDrawable();

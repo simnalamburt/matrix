@@ -6,15 +6,8 @@
 
 
 
-const char * matrix::map = "`1234567890-=~!@#$%^&*()_+qwertyuiop[]asdfghjkl;'zxcvbnm,./\\QWERTYUIOP{}|ASDFGHJKL:\":ZXCVBNM<>?";
+const char* matrix::map = "`1234567890-=~!@#$%^&*()_+qwertyuiop[]asdfghjkl;'zxcvbnm,./\\QWERTYUIOP{}|ASDFGHJKL:\":ZXCVBNM<>?";
 const int matrix::mapLen = strlen(matrix::map);
-const char matrix::blank_char = ' ' ;
-const int matrix::minTrail = 10;
-const int matrix::maxTrail = 20;
-const double matrix::newRainProb = 1 / 5.0;
-const int matrix::refreshRate = 30;
-
-
 
 matrix::matrix()
 {
@@ -39,7 +32,7 @@ matrix::~matrix()
   endwin();
 }
 
-int matrix::run()
+void matrix::run()
 {
   while(true)
   {
@@ -50,7 +43,6 @@ int matrix::run()
     draw();
     usleep(1000000 / matrix::refreshRate);
   }
-  return 0;
 }
 
 void matrix::refresh()
@@ -97,24 +89,23 @@ void matrix::draw()
   mvaddch(0, 0, idx + '0');
 }
 
-inline char matrix::get_random_char()
+char matrix::get_random_char()
 {
   return matrix::map[rand() % matrix::mapLen];
 }
 
-inline void matrix::setColor(int color)
+void matrix::setColor(int color)
 {
   if(color >= 0 && color < COLORS)
     wattron(w, COLOR_PAIR(color));
-  return;
 }
 
-inline int matrix::get_random_range(range r)
+int matrix::get_random_range(range r)
 {
   return rand() % (r.end - r.start) + r.start;
 }
 
-inline double matrix::get_random()
+double matrix::get_random()
 {
   return static_cast<double>(rand()) / RAND_MAX;
 }

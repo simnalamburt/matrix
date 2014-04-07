@@ -5,5 +5,5 @@
 int main()
 {
   matrix m;
-  return m.run();
+  m.run();
 }

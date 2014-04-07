@@ -7,40 +7,37 @@
 
 struct range
 {
-  int start;
-  int end;
-  public:
-  range(int start, int end)
-  {
-    this->start = start;
-    this->end = end;
-  }
+  int start, end;
+  range(int start, int end) : start(start), end(end) { }
 };
 
 class matrix
 {
-  public:
-    matrix();
-    ~matrix();
-    int run();
+private:
+  static const char* map;
+  static const int mapLen;
+  static constexpr char blank_char = ' ';
+  static constexpr int minTrail = 10;
+  static constexpr int maxTrail = 20;
+  static constexpr double newRainProb = 0.2;
+  static constexpr int refreshRate = 30;
+  
+  WINDOW* w;
+  int width;
+  int height;
+  int idx;
+  std::vector<rain> rainList;
 
-  private:
-    WINDOW * w;
-    int width;
-    int height;
-    int idx;
-    std::vector<rain> rainList;
-    static const char * map;
-    static const int mapLen;
-    static const char blank_char;
-    static const int minTrail;
-    static const int maxTrail;
-    static const double newRainProb;
-    static const int refreshRate;
-    void refresh();
-    void draw();
-    inline void setColor(int color);
-    inline char get_random_char();
-    inline int get_random_range(range r);
-    inline double get_random();
+public:
+  matrix();
+  ~matrix();
+  void run();
+
+private:
+  void refresh();
+  void draw();
+  void setColor(int color);
+  char get_random_char();
+  int get_random_range(range r);
+  double get_random();
 };

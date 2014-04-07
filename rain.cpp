@@ -11,5 +11,5 @@ void rain::refresh()
 
 bool rain::isDrawable()
 {
-  return (tick == invVelocity);
+  return tick == invVelocity;
 }
