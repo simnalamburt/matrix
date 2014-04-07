@@ -1,7 +1,9 @@
 #include "matrix.hpp"
 
-int main(void)
+
+
+int main()
 {
-	matrix m;
-	return m.run();
+  matrix m;
+  return m.run();
 }
