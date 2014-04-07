@@ -1,11 +1,10 @@
+#pragma once
 #include <vector>
 #include <ncurses.h>
 #include "rain.hpp"
 
 
 
-#ifndef MATRIX_HPP
-#define MATRIX_HPP
 struct range
 {
   int start;
@@ -45,4 +44,3 @@ class matrix
     inline int get_random_range(range r);
     inline double get_random();
 };
-#endif

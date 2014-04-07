@@ -1,5 +1,4 @@
-#ifndef RAIN_HPP
-#define RAIN_HPP
+#pragma once
 struct rain
 {
   int y;
@@ -21,4 +20,3 @@ struct rain
   void refresh();
   bool isDrawable();
 };
-#endif
