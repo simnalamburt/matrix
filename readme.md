@@ -11,7 +11,13 @@ Gives you matrix-like feeling
     git init https://github.com/simnalamburt/matrix.git
     ```
 
-1.  Build it
+1.  Build & Play
+
+    ```
+    cd matrix
+    make
+    ./matrix
+    ```
 
 #### Contributors
 * Joon, guswns0528@gmail.com
