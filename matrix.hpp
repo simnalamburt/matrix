@@ -17,6 +17,7 @@ private:
   static const char* map;
   static const int mapLen;
   static constexpr char blank_char = ' ';
+  static constexpr char escape_char = 'q';
   static constexpr int minTrail = 10;
   static constexpr int maxTrail = 20;
   static constexpr double newRainProb = 0.2;

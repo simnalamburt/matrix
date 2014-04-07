@@ -3,7 +3,7 @@ TARGET = matrix
 LIBS = -lncurses
 
 CXX = g++
-CPPFLAGS = -g -Wall -std=c++11
+CPPFLAGS = -g -Wall -std=c++1y
 
 OBJECTS = $(patsubst %.cpp, %.o, $(wildcard *.cpp))
 HEADERS = $(wildcard *.hpp)

@@ -10,5 +10,5 @@ struct rain
     x(x), y(y), trailLength(trailLength), invVelocity(invVelocity), tick(0) { }
 
   void refresh();
-  bool isDrawable();
+  bool isDrawable() const;
 };

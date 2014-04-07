@@ -9,7 +9,7 @@ void rain::refresh()
   if (tick == invVelocity) y++;
 }
 
-bool rain::isDrawable()
+bool rain::isDrawable() const
 {
   return tick == invVelocity;
 }

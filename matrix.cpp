@@ -1,13 +1,21 @@
+#include <algorithm>
 #include <cstring>
 #include <cstdlib>
 #include <ctime>
 #include <unistd.h>
 #include "matrix.hpp"
 
+using namespace std;
 
 
-const char* matrix::map = "`1234567890-=~!@#$%^&*()_+qwertyuiop[]asdfghjkl;'zxcvbnm,./\\QWERTYUIOP{}|ASDFGHJKL:\":ZXCVBNM<>?";
+
+const char* matrix::map =
+  "`1234567890-=~!@#$%^&*()_+"
+  "qwertyuiop[]asdfghjkl;'zxcvbnm,./"
+  "\\QWERTYUIOP{}|ASDFGHJKL:\":ZXCVBNM<>?";
 const int matrix::mapLen = strlen(matrix::map);
+
+
 
 matrix::matrix()
 {
@@ -15,7 +23,7 @@ matrix::matrix()
   noecho();
   raw();
   nodelay(w, true);
-  srand((int)time(NULL));
+  srand((unsigned)time(nullptr));
   width = COLS;
   height = LINES;
   idx = 0;
@@ -37,50 +45,42 @@ void matrix::run()
   while(true)
   {
     char input = getch();
-    if (input == 'q')
-      break;
+    if (input == escape_char) break;
     refresh();
     draw();
-    usleep(1000000 / matrix::refreshRate);
+    usleep(1000000.0 / matrix::refreshRate);
   }
 }
 
 void matrix::refresh()
 {
-  for(std::vector<rain>::iterator it = rainList.begin();
-      it != rainList.end();
-      it++)
-  {
-    it->refresh();
-    if (it->y - it->trailLength >= height)
-      rainList.erase(it);
-  }
+  for (auto& rain : rainList) rain.refresh();
+  remove_if(rainList.begin(), rainList.end(),
+      [&](const auto& rain) { return rain.y - rain.trailLength >= height; });
+
   if (get_random() < matrix::newRainProb)
   {
-    rainList.push_back(
-        rain(rand() % width, 0,
-          get_random_range(range(minTrail, maxTrail)),
-          get_random_range(range(3, 6))));
+    rainList.emplace_back(rand() % width, 0,
+        get_random_range(range(minTrail, maxTrail)),
+        get_random_range(range(3, 6)) );
   }
-  idx++;
+  ++idx;
   idx %= 10;
 }
 
 void matrix::draw()
 {
-  for(std::vector<rain>::iterator it = rainList.begin();
-      it != rainList.end();
-      it++)
+  for (const auto& rain : rainList)
   {
-    if (it->isDrawable())
+    if (rain.isDrawable())
     {
-      int y = it->y;
-      int x = it->x;
-      int trailLength = it->trailLength;
+      int x = rain.x, y = rain.y;
+      int trailLength = rain.trailLength;
+
       setColor(1);
       mvaddch(y, x, get_random_char());
       setColor(2);
-      for (int i = 1; i < trailLength; i++)
+      for (int i = 1; i < trailLength; ++i)
         mvaddch(y - i, x, get_random_char());
       mvaddch(y - trailLength, x, blank_char);
     }
