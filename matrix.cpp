@@ -8,14 +8,14 @@
 using namespace std;
 using random_real = uniform_real_distribution<>;
 using random_int  = uniform_int_distribution<>;
+using random_size = uniform_int_distribution<size_t>;
 
 
 
-const char* matrix::map =
-  "`1234567890-=~!@#$%^&*()_+"
-  "qwertyuiop[]asdfghjkl;'zxcvbnm,./"
-  "\\QWERTYUIOP{}|ASDFGHJKL:\":ZXCVBNM<>?";
-const int matrix::mapLen = strlen(matrix::map);
+const string matrix::map =
+  "`1234567890-=~!@#$%^&*()_+"s
+  "qwertyuiop[]asdfghjkl;'zxcvbnm,./"s
+  "\\QWERTYUIOP{}|ASDFGHJKL:\":ZXCVBNM<>?"s;
 
 
 
@@ -79,12 +79,12 @@ void matrix::draw()
       int trailLength = rain.trailLength;
 
       setColor(1);
-      auto c = map[random_int{0, mapLen-1}(engine)];
+      auto c = map[random_size{0, map.length()-1}(engine)];
       mvaddch(y, x, c);
       setColor(2);
       for (int i = 1; i < trailLength; ++i)
       {
-        auto c = map[random_int{0, mapLen-1}(engine)];
+        auto c = map[random_size{0, map.length()-1}(engine)];
         mvaddch(y - i, x, c);
       }
       mvaddch(y - trailLength, x, blank_char);

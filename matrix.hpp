@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <random>
 #include <vector>
 #include <ncurses.h>
@@ -9,8 +10,7 @@
 class matrix
 {
 private:
-  static const char* map;
-  static const int mapLen;
+  static const std::string map;
   static constexpr char blank_char = ' ';
   static constexpr char escape_char = 'q';
   static constexpr int minTrail = 10;
