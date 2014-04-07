@@ -100,7 +100,7 @@ inline char matrix::get_random_char()
 
 inline void matrix::setColor(int color)
 {
-	if(color >= 0 && color < COLORS);
+	if(color >= 0 && color < COLORS)
 		wattron(w, COLOR_PAIR(color));
 	return;
 }
