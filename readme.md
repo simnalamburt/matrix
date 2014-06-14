@@ -1,7 +1,7 @@
 Matrix
 =====
 
-Gives you matrix-like feeling
+The C++ program which gives you matrix-like feeling.
 
 #### Installation
 

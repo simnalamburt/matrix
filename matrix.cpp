@@ -95,6 +95,8 @@ void matrix::draw()
 
 void matrix::setColor(int color)
 {
-  if(color >= 0 && color < COLORS)
+  if (color >= 0 && color < COLORS)
+  {
     wattron(w, COLOR_PAIR(color));
+  }
 }

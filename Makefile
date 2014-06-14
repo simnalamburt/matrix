@@ -1,26 +1,33 @@
-### Setting
+# Variables
 TARGET = matrix
-LIBS = -lncurses
 
-CXX = g++
-CPPFLAGS = -g -Wall -std=c++1y
+CPP = clang++
+CPPFLAGS = -Wall -std=c++1y
+LIBS = -lncurses
 
 OBJECTS = $(patsubst %.cpp, %.o, $(wildcard *.cpp))
 HEADERS = $(wildcard *.hpp)
 
-### Script
-default: $(TARGET)
-all: default
+
+# Makefile scripts
+all: release
+
+debug: CPPFLAGS += -DDEBUG -g
+debug: $(TARGET)
+
+release: CPPFLAGS += -O3
+release: $(TARGET)
 
 $(TARGET): $(OBJECTS)
-	$(CXX) $(OBJECTS) -Wall $(LIBS) -o $@
+	$(CPP) $(OBJECTS) -Wall $(LIBS) -o $@
 
 %.o: %.cpp $(HEADERS)
-	$(CXX) $(CPPFLAGS) -c $< -o $@
+	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	-rm -f *.o
-	-rm -f $(TARGET)
+	rm -f *.o $(TARGET)
 
-.PHONY: default all clean
+
+# Special targets
+.PHONY: all debug release clean
 .PRECIOUS: $(TARGET) $(OBJECTS)
