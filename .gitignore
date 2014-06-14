@@ -1,34 +1,4 @@
-# Created by http://www.gitignore.io
-
-### Linux ###
-*~
-
-
-
-### C++ ###
-# Compiled Object files
-*.slo
-*.lo
+# Ignore compiler output
 *.o
-*.obj
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-
-
-### Custom ###
 matrix
+matrix.dSYM
