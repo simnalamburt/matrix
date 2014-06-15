@@ -3,6 +3,8 @@ Matrix
 
 The C++ program which gives you matrix-like feeling.
 
+![User Screenshot](https://raw.githubusercontent.com/simnalamburt/matrix/master/matrix.png)
+
 #### Installation
 
 1.  Clone the sources from git
