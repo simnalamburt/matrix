@@ -10,7 +10,7 @@ The C++ program which gives you matrix-like feeling.
 1.  Clone the sources from git
 
     ```
-    git init https://github.com/simnalamburt/matrix.git
+    git clone https://github.com/simnalamburt/matrix.git
     ```
 
 1.  Build & Play
