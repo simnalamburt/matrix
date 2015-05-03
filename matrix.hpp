@@ -17,7 +17,7 @@ private:
   static constexpr int maxTrail = 20;
   static constexpr double newRainProb = 0.2;
   static constexpr int refreshRate = 30;
-  
+
   WINDOW* w;
   int width;
   int height;
